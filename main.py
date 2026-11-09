@@ -16,7 +16,7 @@ from PyQt6.QtWebEngineWidgets import QWebEngineView
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("Qt WebEngine Example")
+        self.setWindowTitle("browser")
         self.resize(800, 600)
 
         back_button = QPushButton("Back")
