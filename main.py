@@ -9,9 +9,8 @@ from PyQt6.QtWidgets import (
     QHBoxLayout,
     QPushButton
 )
-
 from PyQt6.QtWebEngineWidgets import QWebEngineView
-
+from pathlib import Path
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -28,7 +27,7 @@ class MainWindow(QMainWindow):
         self.address_bar.returnPressed.connect(self.navigate)
 
         self.browser = QWebEngineView()
-        self.browser.setUrl(QUrl("https://www.google.com"))
+        #self.browser.setUrl(QUrl("https://www.google.com"))
         
         back_button.clicked.connect(self.browser.back)
         forward_button.clicked.connect(self.browser.forward)
@@ -52,7 +51,15 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(central_widget)
         
     def navigate(self):
-        self.browser.setUrl(QUrl.fromUserInput(self.address_bar.text()))
+        address = self.address_bar.text().strip().lower()
+
+        if "about:" in address:
+            path = Path(__file__).parent / "pages" / (address.split(":")[0] + ".html")
+            self.open_file(str(path))
+        else:
+            self.browser.setUrl(QUrl.fromUserInput(self.address_bar.text()))
+    def open_file(self, path):
+        self.browser.load(QUrl.fromLocalFile(path))
     def update_address(self, url):
         self.address_bar.setText(url.toString())
 
