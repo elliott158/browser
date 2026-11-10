@@ -1,0 +1,13 @@
+Web browser built with Python and Qt-Webengine.
+
+Feature Ideas:
+* Highly customizable UI and theming.
+* Custom robust extension system.
+* Chrome addons if possible.
+* Native AI frontend for self hosted bots.
+* Userscript management.
+* Highly customizable new tab page.
+* Customizable keybinds.
+* Keybinds for basic browser interaction (ex clicks, moving focus to buttons, etc).
+* Helium Bangs.
+* Built in notepad.
