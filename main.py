@@ -27,7 +27,7 @@ class MainWindow(QMainWindow):
         self.address_bar.returnPressed.connect(self.navigate)
 
         self.browser = QWebEngineView()
-        #self.browser.setUrl(QUrl("https://www.google.com"))
+        self.open_address("about:newtab")
         
         back_button.clicked.connect(self.browser.back)
         forward_button.clicked.connect(self.browser.forward)
@@ -54,12 +54,16 @@ class MainWindow(QMainWindow):
         address = self.address_bar.text().strip().lower()
 
         if "about:" in address:
-            path = Path(__file__).parent / "pages" / (address.split(":")[0] + ".html")
+            path = Path(__file__).parent / "pages" / (address.split(":")[1] + ".html")
             self.open_file(str(path))
         else:
             self.browser.setUrl(QUrl.fromUserInput(self.address_bar.text()))
     def open_file(self, path):
         self.browser.load(QUrl.fromLocalFile(path))
+    def open_address(self, address):
+        # opens address as string
+        self.address_bar.setText(address)
+        self.navigate()
     def update_address(self, url):
         self.address_bar.setText(url.toString())
 
