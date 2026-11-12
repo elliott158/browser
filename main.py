@@ -1,4 +1,5 @@
 import sys
+from browser_config import *
 from PyQt6.QtCore import QUrl
 from PyQt6.QtWidgets import (
     QApplication,
@@ -69,8 +70,14 @@ class MainWindow(QMainWindow):
     def update_address(self, url):
         self.address_bar.setText(url.toString())
 
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
 
-app = QApplication(sys.argv)
-window = MainWindow()
-window.show()
-sys.exit(app.exec())
+    window = MainWindow()
+    window.show()
+
+    with open(STYLESHEET, "r") as f:
+        _style = f.read()
+        app.setStyleSheet(_style)
+    
+    sys.exit(app.exec())
