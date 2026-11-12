@@ -57,6 +57,8 @@ class MainWindow(QMainWindow):
             path = Path(__file__).parent / "pages" / (address.split(":")[1] + ".html")
             self.open_file(str(path))
         else:
+            if not ("." in address):
+                self.browser.setUrl(QUrl.fromUserInput("duckduckgo.com/" + address))
             self.browser.setUrl(QUrl.fromUserInput(self.address_bar.text()))
     def open_file(self, path):
         self.browser.load(QUrl.fromLocalFile(path))
