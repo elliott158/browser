@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import sys
 from browser_config import *
 from PyQt6.QtCore import QUrl
